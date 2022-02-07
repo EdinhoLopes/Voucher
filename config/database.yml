@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: postgres
+  username: voucher
+  password: voucher
+  post: 5432
+  host: localhost
+
+
+test:
+  <<: *default
+  database: voucher_test
+
+
+#
+production:
+  <<: *default
+  database: voucher_production
+  username: voucher
+  password: <%= ENV['VOUCHER_DATABASE_PASSWORD'] %>
